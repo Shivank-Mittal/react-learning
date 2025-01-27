@@ -1,11 +1,11 @@
 export enum COLORS {
-    GREEN = "GREEN",
+    GREEN = "rgb(22, 163, 74)",
     BLACK = "BLACK",
-    BLUE = "BLUE",
-    RED = "RED",
+    BLUE = "rgb(37, 99, 235)",
+    RED = "rgb(239, 68, 68)",
     BROWN = "BROWN",
     WHITE = "WHITE",
-    YELLOW = "YELLOW"
+    YELLOW = "rgb(234, 179, 8)"
 }
 
 export const ColorsRecord = new Map<string, COLORS>(Object.values(COLORS).map(value => [value, value]));

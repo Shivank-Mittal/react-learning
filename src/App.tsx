@@ -1,19 +1,16 @@
-import { useState, useCallback } from 'react'
 import './App.css'
-// import BackgroundChanger from './project/background-changer/Background_Changer'
-import PasswordGenerator from './project/password-genrator/Password_Generator'
-import CurrencyConverter from './project/currency-converter/Currency_Converter'
-import { COLORS } from './project/background-changer/colors'
+import Header from './components/core/Header'
+import { Outlet } from "react-router";
+import { MENU_AVAILABLE } from './constants/menu';
+import {useTheme} from './context/theme/themeContext';
 
 export default function App() {
-
-
+  const {themeColor} = useTheme();
   return (
     <>
-      <div style={{backgroundColor: COLORS.BLACK}} className='h-screen flex justify-center items-center'>
-        {/* <PasswordGenerator></PasswordGenerator> */}
-        {/* <BackgroundChanger backgroundColor={updateColor}/> */}
-        <CurrencyConverter></CurrencyConverter>
+      <div style={{backgroundColor: themeColor}} className='m-0 pt-10 pr-5 pl-5 grid grid-rows-[auto_1fr] h-screen'>
+        <Header menus={ Object.values(MENU_AVAILABLE)}></Header>  
+        <div className="flex justify-center items-center"> <Outlet /> </div>
       </div>
     </>
   )
