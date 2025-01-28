@@ -1,6 +1,6 @@
 import React from "react"
 import {COLORS, ColorsRecord} from './colors'
-import {useTheme} from "../../context/theme/themeContext";
+import {useTheme} from "../../context/index.ts";
 // prop: { backgroundColor: COLORS} = { backgroundColor: COLORS.GREEN}
 type buttonInfo = {
     name: string,
