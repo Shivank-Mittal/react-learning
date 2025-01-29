@@ -1,14 +1,13 @@
 import './App.css'
 import Header from './components/core/Header'
 import { Outlet } from "react-router";
-import { MENU_AVAILABLE } from './constants/menu';
-import { useTheme} from './context/index.ts';
+import { MENU_AVAILABLE } from './constants/menu';;
+import {useColor} from './store/selector/selector.ts'
 
 export default function App() {
-  const {themeColor} = useTheme();
   return (
     <>
-      <div style={{backgroundColor: themeColor}} className='m-0 pt-10 pr-5 pl-5 grid grid-rows-[auto_1fr] h-screen'>
+      <div style={{backgroundColor: useColor()}} className='m-0 pt-10 pr-5 pl-5 grid grid-rows-[auto_1fr] h-screen'>
         <Header menus={ Object.values(MENU_AVAILABLE)}></Header>  
         <div className="flex justify-center items-center"> <Outlet /> </div>
       </div>

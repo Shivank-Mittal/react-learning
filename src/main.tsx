@@ -8,11 +8,14 @@ import BackgroundChanger from './project/background-changer/Background_Changer'
 import CurrencyConverter from './project/currency-converter/Currency_Converter'
 import PasswordGenerator from './project/password-genrator/Password_Generator'
 import Todo from './project/todo/Todo.tsx'
-import { ThemeProvider } from './context/index.ts'
+import { Provider } from 'react-redux'
+import { store } from './store/store.ts'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ThemeProvider>
+  <Provider store = {store}>
+    {/* Theme provider to be removed once Redux is implemented */}
+    {/* <ThemeProvider> */}
       <BrowserRouter>
         <Routes>
             <Route path='/' element={<App />}>
@@ -25,6 +28,7 @@ createRoot(document.getElementById('root')!).render(
             </Route>
         </Routes>
       </BrowserRouter>
-    </ThemeProvider>
+    {/* </ThemeProvider> */}
+    </Provider>
   </StrictMode>,
 )

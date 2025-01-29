@@ -1,6 +1,8 @@
 import React from "react"
 import {COLORS, ColorsRecord} from './colors'
-import {useTheme} from "../../context/index.ts";
+import { useDispatch } from "react-redux";
+import { updateThemeColor } from "../../store/slice/project/themeSlice.ts";
+
 // prop: { backgroundColor: COLORS} = { backgroundColor: COLORS.GREEN}
 type buttonInfo = {
     name: string,
@@ -24,15 +26,16 @@ const buttons = buttonInfoArray.map(buttonInfo =>
         {buttonInfo.name} 
     </button>
 )
+
+
 export default function BackgroundChanger() {
 
-    const {setThemeColor} = useTheme(); 
-
+    const dispatch = useDispatch();
     function changeColor(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
         event.preventDefault();
         const target = event.target as HTMLButtonElement;
         if(!target.value && !ColorsRecord.has(target.value))  return
-        setThemeColor(ColorsRecord.get(target.value)!)
+        dispatch(updateThemeColor(target.value!))
     }
     return (
         <>
