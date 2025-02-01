@@ -5,11 +5,14 @@ import App from './App.tsx'
 import { BrowserRouter, Route, Routes} from 'react-router'
 import { MENU_AVAILABLE } from './constants/menu.ts'
 import BackgroundChanger from './project/background-changer/Background_Changer'
-import CurrencyConverter from './project/currency-converter/Currency_Converter'
+import CurrencyConverterRaw from './project/currency-converter/Currency_Converter'
 import PasswordGenerator from './project/password-genrator/Password_Generator'
 import Todo from './project/todo/Todo.tsx'
 import { Provider } from 'react-redux'
 import { store } from './store/store.ts'
+import { withNoContentState } from './utils/with/withNoContentState.tsx'
+
+const CurrencyConverter = withNoContentState(CurrencyConverterRaw);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

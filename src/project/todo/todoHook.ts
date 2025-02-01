@@ -7,9 +7,7 @@ export default function useTodo() {
     useEffect(() => {
         const fetchedTodos = localStorage.getItem("todos"); 
         if(!fetchedTodos) return;
-        console.log(fetchedTodos)
         setTodos(JSON.parse(fetchedTodos));
-        console.log(todos)
     } , [])
 
     useEffect(() => {
