@@ -5,6 +5,7 @@ import { MENU_AVAILABLE } from './constants/menu';;
 import {useColor} from './store/selector/selector.ts'
 
 export default function App() {
+  console.log(import.meta.env.VITE_APP_APPWRITE_URL)
   return (
     <>
       <div style={{backgroundColor: useColor()}} className='m-0 pt-10 pr-5 pl-5 grid grid-rows-[auto_1fr] h-screen'>
@@ -14,24 +15,3 @@ export default function App() {
     </>
   )
 }
-
-// function EnableBackgroundChanger(enable : boolean) {
-
-//   const [color, seColor] = useState(COLORS.BLACK);
-//   const updateColor = (chosenColor: COLORS) =>{
-//     seColor(chosenColor)
-//   }
-
-//   const [color, seColor] = useState(COLORS.BLACK);
-
-//   if(!enable) return {color};
-//   const updateColor = (chosenColor: COLORS) =>{
-//     seColor(chosenColor)
-//   }
-
-//   return {
-//     color,
-//     html: <BackgroundChanger backgroundColor={updateColor}/>
-//   } 
-// }
-
