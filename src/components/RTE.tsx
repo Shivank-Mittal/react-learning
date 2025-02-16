@@ -7,12 +7,13 @@ import { IControlProps } from './post-form/PostForm'
 export default function RTE({name, control , defaultValue = "", label }: UseControllerProps<IControlProps> & {label: string} ) {
   return (
     <div>
-        {label && <label>{label}</label>} 
+        {label && <label htmlFor={name}>{label}</label>} 
         <Controller 
           name = {name || "content"}
           control={control}
           render={({field: {onChange}}) =>  (
             <Editor
+              id = {name}
               apiKey='dx4zik9dkhljvfij05dkkej7tf9xgliwlxwjxrckxginkm87'
               initialValue= {defaultValue}
               onEditorChange={onChange}

@@ -1,5 +1,7 @@
 import { NavLink } from "react-router";
-import { LoginButton } from '../index';
+import { LoginButton, Logo } from '../index';
+import { LOGO } from '../../constants/menu';
+
 export default function Header({menus , className = ""}: {menus: Map<string, string>, className?: string}) {
 
     const active = (event: React.MouseEvent<HTMLHeadElement>) => {
@@ -9,6 +11,7 @@ export default function Header({menus , className = ""}: {menus: Map<string, str
     return (
         <nav onClick={ (event) => active(event)} className= {`bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600" ${className}`}>
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <Logo imgSrc={LOGO} />
                 <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                     <LoginButton />
                 </div>
