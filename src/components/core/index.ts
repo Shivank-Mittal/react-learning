@@ -1,9 +1,9 @@
-import Header from "./Header.tsx"
-import Logo from "./logo.tsx"
-import LoginButton from "./LoginButton.tsx"
-import Button from "./Button.tsx"
-import Signup from "./Signup.tsx"
-import Login from "./Login.tsx"
+import Header from "./Header"
+import Logo from "./logo"
+import LoginButton from "./LoginButton"
+import Button from "./Button"
+import Signup from "./Signup"
+import Login from "./Login"
 
 
 export {

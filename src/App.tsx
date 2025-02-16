@@ -1,14 +1,14 @@
 import './App.css'
-import { Header } from './components/index.ts'
+import { Header } from './components/index'
 import { Outlet } from "react-router";
 import { MENU_TYPE, MENU_AVAILABLE, MENU_BLOG } from './constants/menu';;
-import { useColor } from './store/selector/selector.ts'
-import  AuthService  from './data/appWrite/auth.ts';
+import { useColor } from './store/selector/selector'
+import  AuthService  from './data/appWrite/auth';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginAction, logoutAction} from './store/slice/authSlice.ts';
+import { loginAction, logoutAction} from './store/slice/authSlice';
 import { TailSpin } from 'react-loading-icons'
-import BLOG_ROUTE from './constants/router.ts';
+import BLOG_ROUTE from './constants/router';
 
 export default function App() {
 

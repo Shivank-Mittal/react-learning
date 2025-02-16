@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Outlet, useNavigate, useLocation } from 'react-router';
 import { useIsLoggedIn } from '../store/selector/auth.selector';
 import {TailSpin} from 'react-loading-icons'

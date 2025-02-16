@@ -1,14 +1,8 @@
 import {Editor } from '@tinymce/tinymce-react'
 import {Controller, UseControllerProps} from 'react-hook-form'
+import { IControlProps } from './post-form/PostForm'
 
 
-interface IControlProps {
-    title: any;
-    slug: any;
-    content: any;
-    status: any;
-    image: any
-}
 
 export default function RTE({name, control , defaultValue = "", label }: UseControllerProps<IControlProps> & {label: string} ) {
   return (

@@ -1,5 +1,3 @@
-import React from 'react'
-
 function LogoButton({imgSrc, name = "Projects"}: {imgSrc: string, name? : string}) {
   return (
     <div>

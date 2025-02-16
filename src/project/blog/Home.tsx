@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Models } from 'appwrite'
 import database from '../../data/appWrite/database';
 import { PostCard } from '../../components';

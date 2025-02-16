@@ -1,7 +1,7 @@
 import Conf from "../../conf";
 import Client from "./client"
 import { postInfo, updatePostInfo} from "../types";
-import { Databases, Models, Query} from 'appwrite';
+import { Databases, Models} from 'appwrite';
 
 export class Database extends Client {
     private database;
@@ -62,7 +62,13 @@ export class Database extends Client {
         
     }
 
-    async getAllPosts(query = [Query.equal("status", "equal")]): Promise<Models.DocumentList<Models.Document>> {
+    /**
+     * This function get all the posts 
+     * We can also assign the query for specific search. eg - query = [Query.equal("status", "equal")]
+     * 
+     * @returns 
+     */
+    async getAllPosts(): Promise<Models.DocumentList<Models.Document>> {
         return this.operationHandler<Models.DocumentList<Models.Document>>(
             async () => 
                 await this.database.listDocuments(

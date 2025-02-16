@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { TODO } from "../../project/todo/todo";
 import React, { useContext } from "react";
 

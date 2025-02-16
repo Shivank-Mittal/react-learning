@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import database from '../../data/appWrite/database';
 import { Button, PostCard } from '../../components';
 import bucket from '../../data/appWrite/bucket';

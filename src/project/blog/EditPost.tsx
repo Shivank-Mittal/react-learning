@@ -16,7 +16,7 @@ export default function EditPost() {
         return
     }
     database.getPost(postPrams.id).then(
-        (post) => setPost(post)).catch(
+        (fetchedPost:Models.Document) => setPost(fetchedPost)).catch(
         () => navigate(BLOG_ROUTE.All)
     )
    }, [postPrams, navigate])

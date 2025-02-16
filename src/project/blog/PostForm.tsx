@@ -1,4 +1,3 @@
-import React from 'react'
 import { PostForm} from '../../components/index'
 
 export default function AddPost() {

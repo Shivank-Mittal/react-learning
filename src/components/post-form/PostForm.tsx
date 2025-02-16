@@ -9,11 +9,20 @@ import { BLOG_FULL_ROUTE } from '../../constants/router'
 
 
 
-export default function PostForm({post}) {
+export interface IControlProps {
+  title: string;
+  slug: string;
+  content: string;
+  status: string;
+  image: string,
+  label?: string
+}
 
+
+export default function PostForm({post}) {
   const navigate =  useNavigate();
   const userData = useUserData()
-  const {register, control, watch, getValues, handleSubmit, setValue} =  useForm({
+  const {register, control, watch, getValues, handleSubmit, setValue} =  useForm<IControlProps>({
       defaultValues: {
           title: post?.title || "",
           slug: post?.slug || '',
@@ -56,15 +65,16 @@ export default function PostForm({post}) {
     }
   } 
 
-  const createPost = async(data) => {
+
+  const createPost = async (data) => {
     const file = await bucket.uploadFile(data.image[0]);
 
-    if (file) {
-        const fileId = file.$id;
-        data.featuredImage = fileId;
-        database.createPost({ ...data, userId: userData?.$id })
-        .then((dbPost) =>  navigate(`${BLOG_FULL_ROUTE.BASE}post/${dbPost.$id}`))
-        .catch((error) => console.log('Error accord while creating the post: ',error))
+    if (file && userData) {
+      const fileId = file.$id;
+      data.featuredImage = fileId;
+      database.createPost({ ...data, userId: userData?.$id.toString() })
+        .then((dbPost) => navigate(`${BLOG_FULL_ROUTE.BASE}post/${dbPost.$id}`))
+        .catch((error) => console.log('Error occurred while creating the post: ', error));
     }
   }
 
@@ -80,20 +90,22 @@ export default function PostForm({post}) {
   }, []) 
 
   useEffect(() => {
-    const currentTitle = watch('title');
-    if (currentTitle) {
-      setValue("slug", slugTransform(currentTitle), { shouldValidate: true });
-    }
+    // const updateSlug = ( ) => {
+    //   const currentTitle = watch('title');
+    //   if (currentTitle) {
+    //     setValue("slug", slugTransform(currentTitle), { shouldValidate: true });
+    //   }
+    // }
     
     const subscription = watch((value, {name}) => {
       if ((name === "title") && value.title) {
         setValue("slug", slugTransform(value.title), { shouldValidate: true });
       }
-    });
+    }, {slug: slugTransform(getValues().title)});
     return () => {
       subscription.unsubscribe();
     }
-  }, [watch, slugTransform, setValue])
+  }, [watch, slugTransform, setValue, getValues])
 
   return (
     <form onSubmit={handleSubmit(submit)} className="flex flex-wrap max-w-6xl">
