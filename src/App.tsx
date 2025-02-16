@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { loginAction, logoutAction} from './store/slice/authSlice';
 import { TailSpin } from 'react-loading-icons'
 import BLOG_ROUTE from './constants/router';
+import ToasterContainer from './components/core/ToasterContainer';
 
 export default function App() {
 
@@ -83,6 +84,7 @@ export default function App() {
           <main className="flex justify-center items-center h-lvh"> 
             {loading ? loadingFragment() : <Outlet /> } 
           </main>
+          <ToasterContainer></ToasterContainer>
         </>
       }
     </div>
