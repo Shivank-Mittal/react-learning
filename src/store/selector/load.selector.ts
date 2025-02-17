@@ -1,8 +1,6 @@
 import { RootState } from "../store";
-import { useSelector} from 'react-redux'
+import { useSelector } from "react-redux";
 
-
-export const useIsLoading = ():boolean => {
-    return useSelector((state: RootState) => state.LoadReducer.isLoading);
-}
-
+export const useIsLoading = (): boolean => {
+  return useSelector((state: RootState) => state.LoadReducer.isLoading);
+};

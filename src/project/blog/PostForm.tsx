@@ -1,9 +1,9 @@
-import { PostForm} from '../../components/index'
+import { PostForm } from "../../components/index";
 
 export default function AddPost() {
   return (
     <div>
-        <PostForm post={null} />
+      <PostForm post={null} />
     </div>
-  )
+  );
 }
