@@ -18,8 +18,8 @@ export class Bucket extends Client implements IBucketService {
     );
   }
 
-  async delete(fileId: string): Promise<{}> {
-    return this.operationHandler<{}>(
+  async delete(fileId: string): Promise<unknown> {
+    return this.operationHandler<unknown>(
       () => this.bucket.deleteFile(Conf.appWriteBUCKET_ID, fileId),
       "File not deleted",
     );

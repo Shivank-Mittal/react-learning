@@ -52,8 +52,8 @@ export class Database extends Client {
     );
   }
 
-  async deletePost(slug: string): Promise<{}> {
-    return this.operationHandler<{}>(
+  async deletePost(slug: string): Promise<unknown> {
+    return this.operationHandler<unknown>(
       async () =>
         await this.database.deleteDocument(
           Conf.appWriteDATABASE_ID,

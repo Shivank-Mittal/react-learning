@@ -7,7 +7,7 @@ interface BUTTON_PROPS
   bgColor?: string;
   textColor?: string;
   className?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export default function Button({
@@ -16,7 +16,6 @@ export default function Button({
   bgColor = "bg-blue-600",
   textColor = "text-white",
   className = "",
-  ...props
 }: BUTTON_PROPS) {
   return (
     <button

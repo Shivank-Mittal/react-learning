@@ -4,9 +4,10 @@ import { Button, PostCard } from "../../components";
 import bucket from "../../data/appWrite/bucket";
 import { Link } from "react-router";
 import { BLOG_FULL_ROUTE } from "../../constants/router";
+import { Models } from "appwrite";
 
 export default function AllPost() {
-  const [allPost, setAllPosts] = useState<any[]>([]);
+  const [allPost, setAllPosts] = useState<Models.Document[]>([]);
   const [girdCount, setGirdCount] = useState<number>(0);
 
   useEffect(() => {

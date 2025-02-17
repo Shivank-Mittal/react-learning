@@ -1,4 +1,5 @@
 import { ComponentType, useEffect, useState } from "react";
+import { JSX } from "react/jsx-runtime";
 
 export default function WithNoContentState(Component: ComponentType<unknown>) {
   const [inErrorState, setErrorState] = useState(false);
@@ -25,7 +26,7 @@ export default function WithNoContentState(Component: ComponentType<unknown>) {
     return () => window.removeEventListener("Reset-state", errorHandler);
   }, []);
 
-  return (prop: any) => {
+  return (prop: JSX.IntrinsicAttributes) => {
     return inErrorState ? (
       <div
         onClick={() => dispatchEvent(resetEvent)}

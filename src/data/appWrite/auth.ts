@@ -37,14 +37,16 @@ export class AuthService extends Client implements IAuthService {
     );
   }
 
-  async logout(): Promise<{}> {
-    return await this.operationHandler<{}>(
+  async logout(): Promise<unknown> {
+    return await this.operationHandler<unknown>(
       async () => await this.account.deleteSessions(),
       "Error Accrued while logout",
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async currentUser(): Promise<Models.User<any>> {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return await this.operationHandler<Models.User<any>>(
       async () => await this.account.get(),
       "Error Accrued while logout",

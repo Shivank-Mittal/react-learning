@@ -6,6 +6,6 @@ export interface IAuthService {
     accountInfo: accountInfo,
   ): Promise<Models.User<Models.Preferences>>;
   login(loginInfo: loginInfo): Promise<Models.Session>;
-  logout(): Promise<{}>;
+  logout(): Promise<unknown>;
   currentUser(): Promise<Models.User<Models.Preferences>>;
 }
