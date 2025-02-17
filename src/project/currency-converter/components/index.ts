@@ -1,6 +1,3 @@
-import ImportBox from './InputBox'
+import ImportBox from "./InputBox";
 
-
-export {
-    ImportBox
-}
+export { ImportBox };
