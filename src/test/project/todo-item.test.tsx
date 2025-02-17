@@ -1,17 +1,17 @@
-import { render } from "@testing-library/react";
-import TodoItem from "../../project/todo/Todo_Item";
-import { TODO } from "../../project/todo/todo";
-import { describe, expect, test } from "vitest";
+import { render } from '@testing-library/react';
+import TodoItem from '../../project/todo/Todo_Item';
+import { TODO } from '../../project/todo/todo';
+import { describe, expect, test } from 'vitest';
 
-describe("todo-item", () => {
+describe('todo-item', () => {
   const todo: TODO = {
     id: 1,
-    value: "test todo",
+    value: 'test todo',
     isCompleted: false,
-    isTodoEditable: false,
+    isTodoEditable: false
   };
 
-  test("renders", () => {
+  test('renders', () => {
     const todoContainer = render(<TodoItem {...todo}></TodoItem>);
     expect(todoContainer.container).toBeInTheDocument();
   });

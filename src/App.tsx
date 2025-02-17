@@ -1,22 +1,22 @@
-import "./App.css";
-import { Header } from "./components/index";
-import { Outlet } from "react-router";
-import { MENU_TYPE, MENU_AVAILABLE, MENU_BLOG } from "./constants/menu";
-import { useColor } from "./store/selector/selector";
-import AuthService from "./data/appWrite/auth";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { loginAction, logoutAction } from "./store/slice/authSlice";
-import { TailSpin } from "react-loading-icons";
-import BLOG_ROUTE from "./constants/router";
+import './App.css';
+import { Header } from './components/index';
+import { Outlet } from 'react-router';
+import { MENU_TYPE, MENU_AVAILABLE, MENU_BLOG } from './constants/menu';
+import { useColor } from './store/selector/selector';
+import AuthService from './data/appWrite/auth';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { loginAction, logoutAction } from './store/slice/authSlice';
+import { TailSpin } from 'react-loading-icons';
+import BLOG_ROUTE from './constants/router';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
   const menus = new Map<string, MENU_TYPE>([
-    ["main", MENU_AVAILABLE],
-    ["blog", MENU_BLOG],
+    ['main', MENU_AVAILABLE],
+    ['blog', MENU_BLOG]
   ]);
 
   /**
@@ -25,9 +25,7 @@ export default function App() {
    */
   useEffect(() => {
     AuthService.currentUser()
-      .then((useDate) =>
-        useDate ? dispatch(loginAction(useDate)) : dispatch(logoutAction()),
-      )
+      .then((useDate) => (useDate ? dispatch(loginAction(useDate)) : dispatch(logoutAction())))
       .finally(() => setLoading(false));
   }, [loading, dispatch]);
 
@@ -53,16 +51,13 @@ export default function App() {
     const menuURL = new Map<string, string>();
 
     menus.forEach((menu, key) => {
-      if (key === "main") {
-        Object.values(menu).forEach((menu) =>
-          menuURL.set(`project/${menu}`, menu),
-        );
+      if (key === 'main') {
+        Object.values(menu).forEach((menu) => menuURL.set(`project/${menu}`, menu));
       }
 
-      if (key !== "main") {
+      if (key !== 'main') {
         Object.values(menu).forEach((subMenu: string) => {
-          const prefix =
-            subMenu.toLowerCase() === "blog" ? `${key}/${BLOG_ROUTE.All}` : key;
+          const prefix = subMenu.toLowerCase() === 'blog' ? `${key}/${BLOG_ROUTE.All}` : key;
           menuURL.set(`project/${prefix}`, subMenu);
         });
       }

@@ -1,4 +1,4 @@
-import PostForm from "./PostForm";
+import PostForm from './PostForm';
 
 function AddPost() {
   return (

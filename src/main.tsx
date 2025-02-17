@@ -1,34 +1,28 @@
-import { lazy, StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import { BrowserRouter, Route, Routes } from "react-router";
-import { MENU_AVAILABLE } from "./constants/menu.ts";
-import Todo from "./project/todo/todo.tsx";
-import { Provider } from "react-redux";
-import { store } from "./store/store.ts";
-import { Suspense } from "react";
-import AuthLayout from "./components/AuthLayout";
-import Signup from "./project/blog/Signup";
-import Login from "./project/blog/Login";
-import Home from "./project/blog/Home";
-import AddPost from "./project/blog/PostForm";
-import AllPost from "./project/blog/AllPost";
-import BLOG_ROUTE from "./constants/router.ts";
-import Post from "./project/blog/Post";
-import EditPost from "./project/blog/EditPost";
+import { lazy, StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import App from './App';
+import { BrowserRouter, Route, Routes } from 'react-router';
+import { MENU_AVAILABLE } from './constants/menu.ts';
+import Todo from './project/todo/todo.tsx';
+import { Provider } from 'react-redux';
+import { store } from './store/store.ts';
+import { Suspense } from 'react';
+import AuthLayout from './components/AuthLayout';
+import Signup from './project/blog/Signup';
+import Login from './project/blog/Login';
+import Home from './project/blog/Home';
+import AddPost from './project/blog/PostForm';
+import AllPost from './project/blog/AllPost';
+import BLOG_ROUTE from './constants/router.ts';
+import Post from './project/blog/Post';
+import EditPost from './project/blog/EditPost';
 
-const Currency_Converter = lazy(
-  () => import("./project/currency-converter/Currency_Converter"),
-);
-const Password_Generator = lazy(
-  () => import("./project/password-genrator/Password_Generator"),
-);
-const Background_Changer = lazy(
-  () => import("./project/background-changer/Background_Changer"),
-);
+const Currency_Converter = lazy(() => import('./project/currency-converter/Currency_Converter'));
+const Password_Generator = lazy(() => import('./project/password-genrator/Password_Generator'));
+const Background_Changer = lazy(() => import('./project/background-changer/Background_Changer'));
 
-createRoot(document.getElementById("root")!).render(
+createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
@@ -61,15 +55,12 @@ createRoot(document.getElementById("root")!).render(
                   path={MENU_AVAILABLE.BACKGROUND_UPDATER.toLowerCase()}
                   element={<Background_Changer />}
                 />
-                <Route
-                  path={MENU_AVAILABLE.TODO.toLowerCase()}
-                  element={<Todo />}
-                />
+                <Route path={MENU_AVAILABLE.TODO.toLowerCase()} element={<Todo />} />
               </Route>
             </Route>
           </Routes>
         </Suspense>
       </BrowserRouter>
     </Provider>
-  </StrictMode>,
+  </StrictMode>
 );

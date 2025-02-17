@@ -1,5 +1,5 @@
-import { HTMLProps, useId } from "react";
-import { UseControllerProps } from "react-hook-form";
+import { HTMLProps, useId } from 'react';
+import { UseControllerProps } from 'react-hook-form';
 
 interface SelectProps extends HTMLProps<HTMLSelectElement> {
   label: string;
@@ -9,24 +9,14 @@ interface SelectProps extends HTMLProps<HTMLSelectElement> {
   props: UseControllerProps;
 }
 
-export default function Select({
-  label,
-  className,
-  labelClassName,
-  options,
-  props,
-}: SelectProps) {
+export default function Select({ label, className, labelClassName, options, props }: SelectProps) {
   const id = useId();
   return (
     <div>
       {label && (
-        <label
-          htmlFor={id}
-          id={id}
-          className={`inline-block mb-1 pl-1 ${labelClassName}`}
-        >
-          {" "}
-          {label}{" "}
+        <label htmlFor={id} id={id} className={`inline-block mb-1 pl-1 ${labelClassName}`}>
+          {' '}
+          {label}{' '}
         </label>
       )}
       <select
@@ -36,8 +26,8 @@ export default function Select({
       >
         {options?.map((option, index) => (
           <option key={index} value={option}>
-            {" "}
-            {option}{" "}
+            {' '}
+            {option}{' '}
           </option>
         ))}
       </select>

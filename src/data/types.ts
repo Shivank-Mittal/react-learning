@@ -8,7 +8,7 @@ export type postInfo = {
 
 export type updatePostInfo = {
   slug: string;
-  postInfo: Omit<postInfo, "slug" | "userId">;
+  postInfo: Omit<postInfo, 'slug' | 'userId'>;
 };
 
 export type accountInfo = {
@@ -17,4 +17,4 @@ export type accountInfo = {
   name: string;
 };
 
-export type loginInfo = Omit<accountInfo, "name">;
+export type loginInfo = Omit<accountInfo, 'name'>;

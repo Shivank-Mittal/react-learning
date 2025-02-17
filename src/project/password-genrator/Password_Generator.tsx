@@ -1,10 +1,10 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect, useRef } from 'react';
 
 export default function PasswordGenerator() {
   const [includeNumber, setUseNumber] = useState(false);
   const [includeCharacters, setCharacters] = useState(false);
   const [length, setLength] = useState(5);
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState('');
   const [showPasswordCopiedToaster, setPasswordCopiedToaster] = useState(false);
   const passwordRef = useRef<HTMLInputElement>(null);
 
@@ -41,9 +41,9 @@ export default function PasswordGenerator() {
    * It track the dependencies and memoize them
    */
   const passwordCallback = useCallback(() => {
-    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    const numbers = "0123456789";
-    const specialChars = "!@#$%^&*()_+-=[]{}|;:,.<>?";
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    const numbers = '0123456789';
+    const specialChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
 
     // Build the character set based on the parameters
     let characters = letters;
@@ -54,7 +54,7 @@ export default function PasswordGenerator() {
       characters += specialChars;
     }
 
-    let result = "";
+    let result = '';
     for (let i = 0; i < length; i++) {
       const randomIndex = Math.floor(Math.random() * characters.length);
       result += characters[randomIndex];
@@ -76,10 +76,7 @@ export default function PasswordGenerator() {
   }, [password]);
 
   // use to call a function when ever the dependencies update which are passed in array
-  useEffect(
-    () => passwordCallback(),
-    [length, includeNumber, includeCharacters, passwordCallback],
-  );
+  useEffect(() => passwordCallback(), [length, includeNumber, includeCharacters, passwordCallback]);
   return (
     <>
       <div className="max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
@@ -115,9 +112,7 @@ export default function PasswordGenerator() {
               type="range"
               min="1"
               max="50"
-              onChange={(event) =>
-                setLength(+(event.target as HTMLInputElement).value)
-              }
+              onChange={(event) => setLength(+(event.target as HTMLInputElement).value)}
               value={length}
               className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
             />

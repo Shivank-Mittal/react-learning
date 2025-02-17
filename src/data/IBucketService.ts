@@ -1,4 +1,4 @@
-import { Models } from "appwrite";
+import { Models } from 'appwrite';
 
 export default interface IBucketService {
   uploadFile(file: File): Promise<Models.File>;

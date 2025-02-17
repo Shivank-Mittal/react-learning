@@ -1,18 +1,18 @@
-import { Editor } from "@tinymce/tinymce-react";
-import { Controller, UseControllerProps } from "react-hook-form";
-import { IControlProps } from "./post-form/PostForm";
+import { Editor } from '@tinymce/tinymce-react';
+import { Controller, UseControllerProps } from 'react-hook-form';
+import { IControlProps } from './post-form/PostForm';
 
 export default function RTE({
   name,
   control,
-  defaultValue = "",
-  label,
+  defaultValue = '',
+  label
 }: UseControllerProps<IControlProps> & { label: string }) {
   return (
     <div>
       {label && <label htmlFor={name}>{label}</label>}
       <Controller
-        name={name || "content"}
+        name={name || 'content'}
         control={control}
         render={({ field: { onChange } }) => (
           <Editor
@@ -25,31 +25,30 @@ export default function RTE({
               height: 500,
               menubar: true,
               plugins: [
-                "image",
-                "advlist",
-                "autolink",
-                "lists",
-                "link",
-                "image",
-                "charmap",
-                "preview",
-                "anchor",
-                "searchreplace",
-                "visualblocks",
-                "code",
-                "fullscreen",
-                "insertdatetime",
-                "media",
-                "table",
-                "code",
-                "help",
-                "wordcount",
-                "anchor",
+                'image',
+                'advlist',
+                'autolink',
+                'lists',
+                'link',
+                'image',
+                'charmap',
+                'preview',
+                'anchor',
+                'searchreplace',
+                'visualblocks',
+                'code',
+                'fullscreen',
+                'insertdatetime',
+                'media',
+                'table',
+                'code',
+                'help',
+                'wordcount',
+                'anchor'
               ],
               toolbar:
-                "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
-              content_style:
-                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                'undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help',
+              content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
             }}
           ></Editor>
         )}

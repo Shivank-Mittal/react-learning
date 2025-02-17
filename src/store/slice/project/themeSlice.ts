@@ -1,22 +1,22 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { COLORS } from "../../../project/background-changer/colors";
+import { createSlice } from '@reduxjs/toolkit';
+import { COLORS } from '../../../project/background-changer/colors';
 
 export interface themeState {
   color: COLORS;
 }
 
 const initialState: themeState = {
-  color: COLORS.BLACK,
+  color: COLORS.BLACK
 };
 
 const themeSlice = createSlice({
-  name: "theme",
+  name: 'theme',
   initialState,
   reducers: {
     updateThemeColor: (state, action) => {
       state.color = action.payload;
-    },
-  },
+    }
+  }
 });
 
 export const { updateThemeColor } = themeSlice.actions;

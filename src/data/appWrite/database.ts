@@ -1,7 +1,7 @@
-import Conf from "../../conf";
-import Client from "./client";
-import { postInfo, updatePostInfo } from "../types";
-import { Databases, Models } from "appwrite";
+import Conf from '../../conf';
+import Client from './client';
+import { postInfo, updatePostInfo } from '../types';
+import { Databases, Models } from 'appwrite';
 
 export class Database extends Client {
   private database;
@@ -16,7 +16,7 @@ export class Database extends Client {
     slug,
     content,
     featuredImage,
-    userId,
+    userId
   }: postInfo): Promise<Models.Document> {
     return this.operationHandler<Models.Document>(
       async () =>
@@ -24,16 +24,16 @@ export class Database extends Client {
           Conf.appWriteDATABASE_ID,
           Conf.appWriteCOLLECTION_ID,
           slug,
-          { title, content, featuredImage, userId },
+          { title, content, featuredImage, userId }
         ),
-      "Error Accord while creating the app:",
+      'Error Accord while creating the app:'
     );
   }
 
   async updatePost({
     slug,
     userId,
-    postInfo,
+    postInfo
   }: updatePostInfo & { userId: string }): Promise<Models.Document> {
     return this.operationHandler<Models.Document>(
       async () =>
@@ -45,10 +45,10 @@ export class Database extends Client {
             title: postInfo.title,
             content: postInfo.content,
             featuredImage: postInfo.featuredImage,
-            userId: userId,
-          },
+            userId: userId
+          }
         ),
-      "Error Accord while updating the app:",
+      'Error Accord while updating the app:'
     );
   }
 
@@ -58,21 +58,17 @@ export class Database extends Client {
         await this.database.deleteDocument(
           Conf.appWriteDATABASE_ID,
           Conf.appWriteCOLLECTION_ID,
-          slug,
+          slug
         ),
-      "Error Accord while deleting the app:",
+      'Error Accord while deleting the app:'
     );
   }
 
   async getPost(slug: string): Promise<Models.Document> {
     return this.operationHandler<Models.Document>(
       async () =>
-        await this.database.getDocument(
-          Conf.appWriteDATABASE_ID,
-          Conf.appWriteCOLLECTION_ID,
-          slug,
-        ),
-      "Error occurred while fetching the post:",
+        await this.database.getDocument(Conf.appWriteDATABASE_ID, Conf.appWriteCOLLECTION_ID, slug),
+      'Error occurred while fetching the post:'
     );
   }
 
@@ -85,11 +81,8 @@ export class Database extends Client {
   async getAllPosts(): Promise<Models.DocumentList<Models.Document>> {
     return this.operationHandler<Models.DocumentList<Models.Document>>(
       async () =>
-        await this.database.listDocuments(
-          Conf.appWriteDATABASE_ID,
-          Conf.appWriteCOLLECTION_ID,
-        ),
-      "Error occurred while fetching the post:",
+        await this.database.listDocuments(Conf.appWriteDATABASE_ID, Conf.appWriteCOLLECTION_ID),
+      'Error occurred while fetching the post:'
     );
   }
 }

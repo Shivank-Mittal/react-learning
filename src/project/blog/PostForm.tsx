@@ -1,4 +1,4 @@
-import { PostForm } from "../../components/index";
+import { PostForm } from '../../components/index';
 
 export default function AddPost() {
   return (

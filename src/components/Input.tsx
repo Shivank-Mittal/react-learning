@@ -1,5 +1,5 @@
-import { HTMLProps, useId } from "react";
-import { UseControllerProps } from "react-hook-form";
+import { HTMLProps, useId } from 'react';
+import { UseControllerProps } from 'react-hook-form';
 
 interface InputProps extends HTMLProps<HTMLInputElement> {
   label: string;
@@ -11,21 +11,18 @@ interface InputProps extends HTMLProps<HTMLInputElement> {
 
 export default function Input({
   label,
-  type = "text",
-  className = "",
-  labelClassName = "",
-  props,
+  type = 'text',
+  className = '',
+  labelClassName = '',
+  props
 }: InputProps) {
   const id = useId();
 
   return (
     <div className="w-full">
       {label && (
-        <label
-          className={`inline-block mb-1 pl-1 ${labelClassName}`}
-          htmlFor={id}
-        >
-          {" "}
+        <label className={`inline-block mb-1 pl-1 ${labelClassName}`} htmlFor={id}>
+          {' '}
           {label}
         </label>
       )}

@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router";
-import parse from "html-react-parser";
-import database from "../../data/appWrite/database";
-import bucket from "../../data/appWrite/bucket";
-import { useUserData } from "../../store/selector/auth.selector";
-import { Models } from "appwrite";
-import { Button } from "../../components";
-import BLOG_ROUTE, { BLOG_FULL_ROUTE } from "../../constants/router";
+import { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router';
+import parse from 'html-react-parser';
+import database from '../../data/appWrite/database';
+import bucket from '../../data/appWrite/bucket';
+import { useUserData } from '../../store/selector/auth.selector';
+import { Models } from 'appwrite';
+import { Button } from '../../components';
+import BLOG_ROUTE, { BLOG_FULL_ROUTE } from '../../constants/router';
 
 // Define the Post type based on the expected structure of the post object
 interface Post {
@@ -30,7 +30,7 @@ export default function Post() {
         if (post) setPost(post);
         else navigate(BLOG_ROUTE.All);
       });
-    } else navigate("/");
+    } else navigate('/');
   }, [urlPrams.id, navigate]);
 
   const deletePost = () => {

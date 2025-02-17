@@ -1,14 +1,13 @@
-import { NavLink } from "react-router";
-import { LoginButton, Logo } from "../index";
-import { LOGO } from "../../constants/menu";
+import { NavLink } from 'react-router';
+import { LoginButton, Logo } from '../index';
+import { LOGO } from '../../constants/menu';
 
-export default function Header({
-  menus,
-  className = "",
-}: {
+type headerType = {
   menus: Map<string, string>;
   className?: string;
-}) {
+};
+
+export default function Header({ menus, className = '' }: headerType) {
   const active = (event: React.MouseEvent<HTMLHeadElement>) => {
     if (!(event.target instanceof HTMLLIElement)) return;
   };
@@ -40,13 +39,13 @@ export default function Header({
                       to={key}
                       className={(state) =>
                         !state.isActive
-                          ? " hover:text-blue-600 text-white "
-                          : " hover:text-blue-600 text-blue-600  cursor-pointer"
+                          ? ' hover:text-blue-600 text-white '
+                          : ' hover:text-blue-600 text-blue-600  cursor-pointer'
                       }
                     >
-                      {value.replace("_", " ")}
+                      {value.replace('_', ' ')}
                     </NavLink>
-                  </li>,
+                  </li>
                 );
               }
               return list;
@@ -56,14 +55,4 @@ export default function Header({
       </div>
     </nav>
   );
-}
-
-{
-  /* <header onClick={ (event) => active(event)}  
-            className= {`min-w-lg bg-white text-black flex justify-around items-center rounded-2xl h-20  font-semibold ${className}` }>
-            {menus.map((menu, index) => 
-                <NavLink key={index} to={"/project/" + menu.toLowerCase()} className= {(state) => !state.isActive ? "cursor-pointer hover:text-blue-600 ": "cursor-pointer hover:text-blue-600 text-blue-600"}>
-                    {menu.replace("_", " ")}
-                </NavLink>)}
-        </header> */
 }
