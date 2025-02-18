@@ -5,7 +5,7 @@ import auth from '../../data/appWrite/auth';
 import { useNavigate } from 'react-router';
 import { AppwriteException } from 'appwrite';
 import { setLoadingAction } from '../../store/slice/loadSlice';
-import BLOG_ROUTE from '../../constants/router';
+import { BLOG_ROUTE } from '../../constants/menu_routes';
 
 export default function LoginButton() {
   const loggedIn = useIsLoggedIn();

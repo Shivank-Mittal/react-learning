@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { BLOG_FULL_ROUTE } from '../constants/router';
+import { BLOG_FULL_ROUTE } from '../constants/menu_routes';
 
 interface PosCardProps {
   $id: string;

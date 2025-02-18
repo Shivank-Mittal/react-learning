@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import { useUserData } from '../../store/selector/auth.selector';
 import bucket from '../../data/appWrite/bucket';
 import database from '../../data/appWrite/database';
-import { BLOG_FULL_ROUTE } from '../../constants/router';
+import { BLOG_FULL_ROUTE } from '../../constants/menu_routes';
 
 export interface IControlProps {
   title: string;

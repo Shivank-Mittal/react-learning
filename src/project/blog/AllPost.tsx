@@ -3,7 +3,7 @@ import database from '../../data/appWrite/database';
 import { Button, PostCard } from '../../components';
 import bucket from '../../data/appWrite/bucket';
 import { Link } from 'react-router';
-import { BLOG_FULL_ROUTE } from '../../constants/router';
+import { BLOG_FULL_ROUTE } from '../../constants/menu_routes';
 import { Models } from 'appwrite';
 
 export default function AllPost() {

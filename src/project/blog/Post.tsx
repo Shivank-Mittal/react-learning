@@ -6,7 +6,7 @@ import bucket from '../../data/appWrite/bucket';
 import { useUserData } from '../../store/selector/auth.selector';
 import { Models } from 'appwrite';
 import { Button } from '../../components';
-import BLOG_ROUTE, { BLOG_FULL_ROUTE } from '../../constants/router';
+import { BLOG_ROUTE, BLOG_FULL_ROUTE } from '../../constants/menu_routes';
 
 // Define the Post type based on the expected structure of the post object
 interface Post {

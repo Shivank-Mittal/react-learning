@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import database from '../../data/appWrite/database';
 import { useNavigate, useParams } from 'react-router';
-import BLOG_ROUTE from '../../constants/router';
+import { BLOG_ROUTE } from '../../constants/menu_routes';
 import { Models } from 'appwrite';
 import PostForm from '../../components/post-form/PostForm';
 

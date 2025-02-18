@@ -7,7 +7,7 @@ import { accountInfo } from '../../data/types';
 import { loginAction } from '../../store/slice/authSlice';
 import Input from '../Input';
 import Button from './Button';
-import BLOG_ROUTE, { BLOG_FULL_ROUTE } from '../../constants/router';
+import { BLOG_ROUTE, BLOG_FULL_ROUTE } from '../../constants/menu_routes';
 
 function Signup() {
   const navigate = useNavigate();

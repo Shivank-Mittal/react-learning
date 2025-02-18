@@ -10,7 +10,7 @@ import Button from './Button';
 import { Rings } from 'react-loading-icons';
 import { setLoadingAction } from '../../store/slice/loadSlice';
 import { useIsLoading } from '../../store/selector/load.selector';
-import BLOG_ROUTE, { BLOG_FULL_ROUTE } from '../../constants/router';
+import { BLOG_ROUTE, BLOG_FULL_ROUTE } from '../../constants/menu_routes';
 
 export default function Login() {
   const dispatch = useDispatch();
