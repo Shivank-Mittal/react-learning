@@ -1,6 +1,6 @@
 import { LoginButton, Logo } from '../index';
 import { LOGO } from '../../constants/menu';
-import HeaderLink from './HeaderLInk';
+import HeaderLink from './HeaderLink';
 import { Menu } from '../../constants/router';
 
 type headerType = {
@@ -29,7 +29,7 @@ export default function Header({ menu, className = '' }: headerType) {
         >
           <ul className="flex flex-col items-center p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             {Object.values(menu).map((link, index) => (
-              <HeaderLink key={index} props= {link}></HeaderLink>
+              <HeaderLink key={index} props={link}></HeaderLink>
             ))}
           </ul>
         </div>

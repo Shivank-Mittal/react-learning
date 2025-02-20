@@ -21,6 +21,7 @@ import EditPost from './project/blog/EditPost';
 const Currency_Converter = lazy(() => import('./project/currency-converter/Currency_Converter'));
 const Password_Generator = lazy(() => import('./project/password-genrator/Password_Generator'));
 const Background_Changer = lazy(() => import('./project/background-changer/Background_Changer'));
+const Memory_Game = lazy(() => import('./project/memory-game/Card_Box.tsx'));
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -56,6 +57,7 @@ createRoot(document.getElementById('root')!).render(
                   element={<Password_Generator />}
                 />
                 <Route path={PROJECT_ROUTE.TODO.toLowerCase()} element={<Todo />} />
+                <Route path={PROJECT_ROUTE.MEMORY_GAME.toLowerCase()} element={<Memory_Game />} />
               </Route>
             </Route>
             <Route path="*" element={<Navigate to="/" replace />} />
