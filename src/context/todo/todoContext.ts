@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { TODO } from "../../project/todo/todo";
-import React, { useContext } from "react";
+import { TODO } from '../../project/todo/todo';
+import React, { useContext } from 'react';
 
 const TodosContext = React.createContext({
   todos: [] as TODO[],
@@ -8,7 +8,7 @@ const TodosContext = React.createContext({
   updateTodo: (id: number, todo: TODO) => {},
   deleteTodo: (id: number) => {},
   toggleComplete: (id: number) => {},
-  toggleEditable: (id: number) => {},
+  toggleEditable: (id: number) => {}
 });
 
 const TodoProvider = TodosContext.Provider;

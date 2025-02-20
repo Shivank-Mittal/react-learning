@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import database from "../../data/appWrite/database";
-import { Button, PostCard } from "../../components";
-import bucket from "../../data/appWrite/bucket";
-import { Link } from "react-router";
-import { BLOG_FULL_ROUTE } from "../../constants/router";
-import { Models } from "appwrite";
+import { useEffect, useState } from 'react';
+import database from '../../data/appWrite/database';
+import { Button, PostCard } from '../../components';
+import bucket from '../../data/appWrite/bucket';
+import { Link } from 'react-router';
+import { BLOG_FULL_ROUTE } from '../../constants/menu_routes';
+import { Models } from 'appwrite';
 
 export default function AllPost() {
   const [allPost, setAllPosts] = useState<Models.Document[]>([]);
@@ -19,13 +19,10 @@ export default function AllPost() {
 
   return (
     <>
-      <Link
-        to={BLOG_FULL_ROUTE.ADD}
-        className="absolute left-10 top-40 cursor-pointer"
-      >
+      <Link to={BLOG_FULL_ROUTE.ADD} className="absolute left-10 top-40 cursor-pointer">
         <Button> Add Post</Button>
       </Link>
-      <div className={`grid ${"grid-cols-" + girdCount} gap-4`}>
+      <div className={`grid ${'grid-cols-' + girdCount} gap-4`}>
         {allPost.map((post) => (
           <PostCard
             $id={post.$id}

@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useTodos } from "../../context/index.ts";
-import { TODO } from "./todo.ts";
+import { useState } from 'react';
+import { useTodos } from '../../context/index.ts';
+import { TODO } from './todo.ts';
 function TodoItem(todo: TODO) {
   const { id, value, isCompleted, isTodoEditable } = todo;
 
@@ -10,7 +10,7 @@ function TodoItem(todo: TODO) {
   return (
     <div
       key={id}
-      className={`flex w-full border border-black/10 rounded-lg px-3 py-1.5 gap-x-3 shadow-sm shadow-white/50 duration-300  text-black ${isCompleted ? "bg-[#c6e9a7]" : "bg-[#ccbed7]"}`}
+      className={`flex w-full border border-black/10 rounded-lg px-3 py-1.5 gap-x-3 shadow-sm shadow-white/50 duration-300  text-black ${isCompleted ? 'bg-[#c6e9a7]' : 'bg-[#ccbed7]'}`}
     >
       <input
         type="checkbox"
@@ -20,7 +20,7 @@ function TodoItem(todo: TODO) {
       />
       <input
         type="text"
-        className={`border outline-none w-full bg-transparent rounded-lg ${isTodoEditable ? "border-black/10 px-2" : "border-transparent"} ${todo.isCompleted ? "line-through" : ""}`}
+        className={`border outline-none w-full bg-transparent rounded-lg ${isTodoEditable ? 'border-black/10 px-2' : 'border-transparent'} ${todo.isCompleted ? 'line-through' : ''}`}
         value={msg}
         onChange={(e) => setMsg(e.target.value)}
         readOnly={!isTodoEditable}
@@ -38,7 +38,7 @@ function TodoItem(todo: TODO) {
         }}
         disabled={todo.isCompleted}
       >
-        {isTodoEditable ? "📁" : "✏️"}
+        {isTodoEditable ? '📁' : '✏️'}
       </button>
       {/* Delete Todo Button */}
       <button

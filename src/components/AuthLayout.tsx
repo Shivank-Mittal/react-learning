@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { Outlet, useNavigate, useLocation } from "react-router";
-import { useIsLoggedIn } from "../store/selector/auth.selector";
-import { TailSpin } from "react-loading-icons";
-import BLOG_ROUTE from "../constants/router";
+import { useEffect, useState } from 'react';
+import { Outlet, useNavigate, useLocation } from 'react-router';
+import { useIsLoggedIn } from '../store/selector/auth.selector';
+import { TailSpin } from 'react-loading-icons';
+import { BLOG_ROUTE } from '../constants/menu_routes';
 
 export default function AuthLayout({ authentication = true }) {
   const [loader, setLoader] = useState(true);

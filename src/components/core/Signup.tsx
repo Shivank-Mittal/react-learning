@@ -1,22 +1,22 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router";
-import authService from "../../data/appWrite/auth";
-import { accountInfo } from "../../data/types";
-import { loginAction } from "../../store/slice/authSlice";
-import Input from "../Input";
-import Button from "./Button";
-import BLOG_ROUTE, { BLOG_FULL_ROUTE } from "../../constants/router";
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router';
+import authService from '../../data/appWrite/auth';
+import { accountInfo } from '../../data/types';
+import { loginAction } from '../../store/slice/authSlice';
+import Input from '../Input';
+import Button from './Button';
+import { BLOG_ROUTE, BLOG_FULL_ROUTE } from '../../constants/menu_routes';
 
 function Signup() {
   const navigate = useNavigate();
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm<accountInfo>();
 
   const create = async (data: accountInfo) => {
-    setError("");
+    setError('');
 
     try {
       const userData = await authService.createAccount(data);
@@ -25,18 +25,16 @@ function Signup() {
         navigate(BLOG_ROUTE.All);
       }
     } catch (currentError) {
-      setError("Error while creating account: " + currentError);
+      setError('Error while creating account: ' + currentError);
     }
   };
 
   return (
     <div className="flex items-center justify-center">
-      <div
-        className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
-      >
+      <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
         <h2 className="text-center text-2xl font-bold leading-tight">
-          {" "}
-          Sign up to create account{" "}
+          {' '}
+          Sign up to create account{' '}
         </h2>
         <p className="mt-2 text-center text-base text-black/60">
           Already have an account?&nbsp;
@@ -56,7 +54,7 @@ function Signup() {
               placeholder="Enter your full name"
               type="text"
               className=""
-              props={register("name", { required: true })}
+              props={register('name', { required: true })}
             />
 
             <Input
@@ -64,9 +62,9 @@ function Signup() {
               placeholder="Enter your email"
               type="email"
               className=""
-              props={register("email", {
+              props={register('email', {
                 required: true,
-                pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
               })}
             />
 
@@ -74,7 +72,7 @@ function Signup() {
               label="Password: "
               type="password"
               placeholder="Enter your password"
-              props={register("password", { required: true, minLength: 8 })}
+              props={register('password', { required: true, minLength: 8 })}
             />
 
             <Button type="submit" className="w-full">

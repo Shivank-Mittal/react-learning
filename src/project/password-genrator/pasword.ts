@@ -9,11 +9,11 @@ export default function generateRandomString(
   callback: (value: string) => unknown,
   length: number,
   includeNumbers: boolean,
-  includeSpecialChars: boolean,
+  includeSpecialChars: boolean
 ) {
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-  const numbers = "0123456789";
-  const specialChars = "!@#$%^&*()_+-=[]{}|;:,.<>?";
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const numbers = '0123456789';
+  const specialChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
 
   // Build the character set based on the parameters
   let characters = letters;
@@ -24,7 +24,7 @@ export default function generateRandomString(
     characters += specialChars;
   }
 
-  let result = "";
+  let result = '';
   for (let i = 0; i < length; i++) {
     const randomIndex = Math.floor(Math.random() * characters.length);
     result += characters[randomIndex];

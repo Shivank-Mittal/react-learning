@@ -1,7 +1,7 @@
-import React from "react";
-import { COLORS, ColorsRecord } from "./colors";
-import { useDispatch } from "react-redux";
-import { updateThemeColor } from "../../store/slice/project/themeSlice.ts";
+import React from 'react';
+import { COLORS, ColorsRecord } from './colors';
+import { useDispatch } from 'react-redux';
+import { updateThemeColor } from '../../store/slice/project/themeSlice.ts';
 
 // prop: { backgroundColor: COLORS} = { backgroundColor: COLORS.GREEN}
 type buttonInfo = {
@@ -10,12 +10,12 @@ type buttonInfo = {
 };
 
 const buttonInfoArray: buttonInfo[] = [
-  { name: "Yellow", color: COLORS.YELLOW },
-  { name: "RED", color: COLORS.RED },
-  { name: "GREEN", color: COLORS.GREEN },
-  { name: "BLUE", color: COLORS.BLUE },
-  { name: "BROWN", color: COLORS.BROWN },
-  { name: "BLACK", color: COLORS.BLACK },
+  { name: 'Yellow', color: COLORS.YELLOW },
+  { name: 'RED', color: COLORS.RED },
+  { name: 'GREEN', color: COLORS.GREEN },
+  { name: 'BLUE', color: COLORS.BLUE },
+  { name: 'BROWN', color: COLORS.BROWN },
+  { name: 'BLACK', color: COLORS.BLACK }
 ];
 
 const buttons = buttonInfoArray.map((buttonInfo) => (

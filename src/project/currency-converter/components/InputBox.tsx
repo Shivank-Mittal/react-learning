@@ -1,4 +1,4 @@
-import { useId } from "react";
+import { useId } from 'react';
 
 type inputProps = {
   label: string;
@@ -17,9 +17,9 @@ export default function InputBox({
   currencyOptions = [],
   onAmountChange,
   onCurrencyChange,
-  selectedCurrency = "usd",
+  selectedCurrency = 'usd',
   currencyChangeDisable = false,
-  className = "",
+  className = ''
 }: inputProps) {
   const amountId = useId();
   return (
@@ -35,9 +35,7 @@ export default function InputBox({
           placeholder="Amount"
           disabled={currencyChangeDisable}
           value={amount}
-          onChange={(event) =>
-            onAmountChange && onAmountChange(Number(event.target.value))
-          }
+          onChange={(event) => onAmountChange && onAmountChange(Number(event.target.value))}
         />
       </div>
       <div className="w-1/2 flex flex-wrap justify-end text-right">
@@ -49,8 +47,8 @@ export default function InputBox({
         >
           {currencyOptions.map((currency) => (
             <option key={currency} value={currency}>
-              {" "}
-              {currency}{" "}
+              {' '}
+              {currency}{' '}
             </option>
           ))}
         </select>

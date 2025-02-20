@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { Models } from "appwrite";
-import database from "../../data/appWrite/database";
-import { PostCard } from "../../components";
-import { useIsLoggedIn } from "../../store/selector/auth.selector";
+import { useState, useEffect } from 'react';
+import { Models } from 'appwrite';
+import database from '../../data/appWrite/database';
+import { PostCard } from '../../components';
+import { useIsLoggedIn } from '../../store/selector/auth.selector';
 
 export default function Home() {
   const [posts, setPosts] = useState<Models.Document[]>([]);
@@ -36,11 +36,7 @@ export default function Home() {
       <div className="flex flex-wrap">
         {posts.map((post) => (
           <div key={post.$id} className="p-2 w-1/4">
-            <PostCard
-              $id={post.$id}
-              title={post.title}
-              getImageUrl={() => post.featureImage}
-            />
+            <PostCard $id={post.$id} title={post.title} getImageUrl={() => post.featureImage} />
           </div>
         ))}
       </div>

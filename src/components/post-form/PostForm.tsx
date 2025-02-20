@@ -1,11 +1,11 @@
-import { useCallback, useEffect } from "react";
-import { Button, Input, RTE, Select } from "../index";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
-import { useUserData } from "../../store/selector/auth.selector";
-import bucket from "../../data/appWrite/bucket";
-import database from "../../data/appWrite/database";
-import { BLOG_FULL_ROUTE } from "../../constants/router";
+import { useCallback, useEffect } from 'react';
+import { Button, Input, RTE, Select } from '../index';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router';
+import { useUserData } from '../../store/selector/auth.selector';
+import bucket from '../../data/appWrite/bucket';
+import database from '../../data/appWrite/database';
+import { BLOG_FULL_ROUTE } from '../../constants/menu_routes';
 
 export interface IControlProps {
   title: string;
@@ -19,17 +19,16 @@ export interface IControlProps {
 export default function PostForm({ post }) {
   const navigate = useNavigate();
   const userData = useUserData();
-  const { register, control, watch, getValues, handleSubmit, setValue } =
-    useForm<IControlProps>({
-      defaultValues: {
-        title: post?.title || "",
-        slug: post?.slug || "",
-        content: post?.content || "",
-        status: post?.status || "active",
-        image: post?.image || "",
-      },
-      mode: "onChange",
-    });
+  const { register, control, watch, getValues, handleSubmit, setValue } = useForm<IControlProps>({
+    defaultValues: {
+      title: post?.title || '',
+      slug: post?.slug || '',
+      content: post?.content || '',
+      status: post?.status || 'active',
+      image: post?.image || ''
+    },
+    mode: 'onChange'
+  });
 
   const submit = async (data) => {
     if (post) {
@@ -41,9 +40,7 @@ export default function PostForm({ post }) {
 
   const editPost = async (data) => {
     const image = data.image[0];
-    const fileUploadPromise = image
-      ? bucket.uploadFile(image)
-      : Promise.resolve(null);
+    const fileUploadPromise = image ? bucket.uploadFile(image) : Promise.resolve(null);
     const fileUploaded = await fileUploadPromise;
 
     if (fileUploaded) {
@@ -55,8 +52,8 @@ export default function PostForm({ post }) {
       userId: post.userId,
       postInfo: {
         ...data,
-        featuredImage: fileUploaded ? fileUploaded?.$id : post.featuredImage,
-      },
+        featuredImage: fileUploaded ? fileUploaded?.$id : post.featuredImage
+      }
     });
 
     if (dbPost) {
@@ -74,21 +71,19 @@ export default function PostForm({ post }) {
       database
         .createPost({ ...data, userId: userData?.$id.toString() })
         .then((dbPost) => navigate(`${BLOG_FULL_ROUTE.BASE}post/${dbPost.$id}`))
-        .catch((error) =>
-          console.log("Error occurred while creating the post: ", error),
-        );
+        .catch((error) => console.log('Error occurred while creating the post: ', error));
     }
   };
 
   const slugTransform = useCallback((value: string) => {
-    if (value && typeof value === "string")
+    if (value && typeof value === 'string')
       return value
         .trim()
         .toLowerCase()
-        .replace(/[^a-zA-Z\d\s]+/g, "-")
-        .replace(/\s/g, "-");
+        .replace(/[^a-zA-Z\d\s]+/g, '-')
+        .replace(/\s/g, '-');
 
-    return "";
+    return '';
   }, []);
 
   useEffect(() => {
@@ -101,13 +96,13 @@ export default function PostForm({ post }) {
 
     const subscription = watch(
       (value, { name }) => {
-        if (name === "title" && value.title) {
-          setValue("slug", slugTransform(value.title), {
-            shouldValidate: true,
+        if (name === 'title' && value.title) {
+          setValue('slug', slugTransform(value.title), {
+            shouldValidate: true
           });
         }
       },
-      { slug: slugTransform(getValues().title) },
+      { slug: slugTransform(getValues().title) }
     );
     return () => {
       subscription.unsubscribe();
@@ -123,7 +118,7 @@ export default function PostForm({ post }) {
           className="mb-4"
           labelClassName="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
           type="text"
-          props={register("title", { required: true })}
+          props={register('title', { required: true })}
         />
         <Input
           label="Slug :"
@@ -131,10 +126,10 @@ export default function PostForm({ post }) {
           className="mb-4"
           labelClassName="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
           type="text"
-          props={register("slug", { required: true })}
+          props={register('slug', { required: true })}
           onInput={(e) => {
-            setValue("slug", slugTransform(e.currentTarget.value), {
-              shouldValidate: true,
+            setValue('slug', slugTransform(e.currentTarget.value), {
+              shouldValidate: true
             });
           }}
         />
@@ -142,7 +137,7 @@ export default function PostForm({ post }) {
           label="Content :"
           name="content"
           control={control}
-          defaultValue={getValues("content")}
+          defaultValue={getValues('content')}
         />
       </div>
       <div className="w-1/3 px-2">
@@ -152,7 +147,7 @@ export default function PostForm({ post }) {
           className="mb-4"
           labelClassName="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
           accept="image/png, image/jpg, image/jpeg, image/gif"
-          props={register("image", { required: !post })}
+          props={register('image', { required: !post })}
         />
         {post && (
           <div className="w-full mb-4">
@@ -164,18 +159,14 @@ export default function PostForm({ post }) {
           </div>
         )}
         <Select
-          options={["active", "inactive"]}
+          options={['active', 'inactive']}
           label="Status: "
           className="mb-4"
           labelClassName="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-          props={register("status", { required: true })}
+          props={register('status', { required: true })}
         />
-        <Button
-          type="submit"
-          bgColor={post ? "bg-green-500" : undefined}
-          className="w-full"
-        >
-          {post ? "Update" : "Submit"}
+        <Button type="submit" bgColor={post ? 'bg-green-500' : undefined} className="w-full">
+          {post ? 'Update' : 'Submit'}
         </Button>
       </div>
     </form>
