@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useMemoryGame } from './useMemoryGame';
 import Card from './Card';
 import { pokemonSvgs } from './pokemon-svgs';
@@ -6,8 +6,8 @@ import { pokemonSvgs } from './pokemon-svgs';
 let gameOver = false;
 
 export default function Card_Box() {
-  const [setFlippedCards, flippedCards, setSize, reset, matchedCards, gridSize, dec, movesCount] =
-    useMemoryGame(3);
+  const [addFlippedCards, flippedCards, setSize, reset, matchedCards, dec, movesCount, gridSize] =
+    useMemoryGame(4);
 
   if (matchedCards.length === gridSize * gridSize && !gameOver) {
     gameOver = true;
@@ -17,22 +17,32 @@ export default function Card_Box() {
     }, 3000);
   }
 
+  const matchCardsSize = (size: 2 | 3 | 4 | 6) => {
+    if (size === 2 || size === 4) {
+      return 2;
+    }
+    return 3;
+  };
+
   const handleCardClicked = (event: React.MouseEvent<HTMLHeadElement>) => {
     const target = event.target as HTMLElement;
-    if (!target.dataset.card || flippedCards.length > 2) {
+    if (!target.dataset.card) {
       return;
     }
-
     const row = target.dataset.row;
     const col = target.dataset.col;
     const clickedItemId = `${row}-${col}`;
 
     //test if a card is already flipped;
-    if (matchedCards.includes(clickedItemId) || flippedCards.includes(clickedItemId)) {
+    if (
+      matchedCards.includes(clickedItemId) ||
+      flippedCards.includes(clickedItemId) ||
+      flippedCards.length === matchCardsSize(gridSize as 2 | 3 | 4 | 6)
+    ) {
       return;
     }
 
-    setFlippedCards((prv) => [...prv, clickedItemId]);
+    addFlippedCards(clickedItemId);
   };
 
   const selectionBox = () => (
@@ -46,10 +56,12 @@ export default function Card_Box() {
       <select
         id="countries"
         value={gridSize}
-        onChange={(e) => setSize(Number(e.target.value) as 3 | 6)}
+        onChange={(e) => setSize(Number(e.target.value) as 2 | 3 | 4 | 6)}
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       >
+        <option>2</option>
         <option>3</option>
+        <option>4</option>
         <option>6</option>
       </select>
     </div>
@@ -59,9 +71,16 @@ export default function Card_Box() {
     <div className="flex flex-col gap-5">
       {selectionBox()}
 
-      <div className="text-center text-2xl text-green-500 font-bold">Moves: {movesCount}</div>
+      <div className="text-center text-2xl text-green-500 font-bold">
+        {' '}
+        Match {matchCardsSize(gridSize as 2 | 3 | 4 | 6)} cards, Moves: {movesCount}
+      </div>
       <div
-        className={`bg-white p-5 grid grid-rows-${gridSize} grid-cols-${gridSize} gap-4`}
+        className={`bg-white p-5 grid gap-4`}
+        style={{
+          gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
+          gridTemplateRows: `repeat(${gridSize}, 1fr)`
+        }}
         onClick={(event) => handleCardClicked(event)}
       >
         {dec.map((row: number[], rowIndex: number) =>
