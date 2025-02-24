@@ -1,21 +1,24 @@
+/* eslint-disable @eslint-react/web-api/no-leaked-timeout */
 import { useEffect, useState } from 'react';
 import { getShuffledCardsDec } from './card-dec';
 import { useCardsStore } from './cards-store.hook';
 import { matchCards } from './matcher/card-matcher';
 
 export function useMemoryGame(size: 2 | 3 | 4 | 6) {
-  const [gridSize, setGridSize] = useState<number>(size);
+  const [gridSize, setGridSize] = useState<2 | 3 | 4 | 6>(size);
   const [flippedCards, addFlippedCards, resetFlippedCards] = useCardsStore();
   const [matchedCards, addMatchedCards, resetMatchedCards] = useCardsStore();
   const [movesCount, setMovesCount] = useState<number>(0);
   const resetCounter = () => setMovesCount(0);
-  const matchCardsSize = (size: 2 | 3 | 4 | 6) => {
-    if (size === 2 || size === 4) {
+  const matchCardsSize = (localSize: 2 | 3 | 4 | 6) => {
+    if (localSize === 2 || localSize === 4) {
       return 2;
     }
     return 3;
   };
-  const [dec, setDec] = useState<number[][]>(() => getShuffledCardsDec(size, matchCardsSize()));
+  const [dec, setDec] = useState<number[][]>(() =>
+    getShuffledCardsDec(gridSize, matchCardsSize(gridSize))
+  );
 
   useEffect(() => {
     const handleMatchedCards = () => {
@@ -31,7 +34,7 @@ export function useMemoryGame(size: 2 | 3 | 4 | 6) {
 
     const processFlippedCards = () => {
       try {
-        if (flippedCards.length !== matchCardsSize(size)) return;
+        if (flippedCards.length !== matchCardsSize(gridSize)) return;
 
         if (matchCards(flippedCards, dec)) {
           handleMatchedCards();
@@ -49,17 +52,17 @@ export function useMemoryGame(size: 2 | 3 | 4 | 6) {
     processFlippedCards();
   }, [flippedCards, dec]);
 
-  function reset(size?: 2 | 3 | 4 | 6) {
-    const newSize = size || (gridSize as 2 | 3 | 4 | 6);
+  function reset(sizeLocal?: 2 | 3 | 4 | 6) {
+    const newSize = sizeLocal || (gridSize as 2 | 3 | 4 | 6);
     setDec(getShuffledCardsDec(newSize, matchCardsSize(newSize)));
     resetFlippedCards();
     resetMatchedCards();
     resetCounter();
   }
 
-  function setSize(size: 2 | 3 | 4 | 6) {
-    setGridSize(size);
-    reset(size);
+  function setSize(sizeLocal: 2 | 3 | 4 | 6) {
+    setGridSize(sizeLocal);
+    reset(sizeLocal);
   }
 
   return [

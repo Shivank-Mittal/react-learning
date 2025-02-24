@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useMemoryGame } from './useMemoryGame';
 import Card from './Card';
 import { pokemonSvgs } from './pokemon-svgs';
@@ -9,22 +9,39 @@ export default function Card_Box() {
   const [addFlippedCards, flippedCards, setSize, reset, matchedCards, dec, movesCount, gridSize] =
     useMemoryGame(4);
 
+  const componentRef = useRef<HTMLDivElement>(null);
+  const resetButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Check player won, show won message and then reset in 3s.
   if (matchedCards.length === gridSize * gridSize && !gameOver) {
     gameOver = true;
-    setTimeout(() => {
-      reset();
-      gameOver = false;
-    }, 3000);
+    resetButtonRef.current?.focus();
   }
 
-  const matchCardsSize = (size: 2 | 3 | 4 | 6) => {
-    if (size === 2 || size === 4) {
+  function resetGame() {
+    gameOver = false;
+    reset(gridSize);
+  }
+
+  //Determine how many cards will be matching.
+  const matchingCardsSize = (localSize: 2 | 3 | 4 | 6) => {
+    if (localSize === 2 || localSize === 4) {
       return 2;
     }
     return 3;
   };
 
-  const handleCardClicked = (event: React.MouseEvent<HTMLHeadElement>) => {
+  useEffect(() => {
+    document.addEventListener('cardClick', handleCardClicked);
+
+    return () => {
+      // eslint-disable-next-line @eslint-react/web-api/no-leaked-event-listener
+      document.removeEventListener('cardClick', handleCardClicked);
+    };
+  }, [flippedCards]);
+
+  const handleCardClicked = (event: Event) => {
+    document.removeEventListener('cardClick', handleCardClicked);
     const target = event.target as HTMLElement;
     if (!target.dataset.card) {
       return;
@@ -37,8 +54,9 @@ export default function Card_Box() {
     if (
       matchedCards.includes(clickedItemId) ||
       flippedCards.includes(clickedItemId) ||
-      flippedCards.length === matchCardsSize(gridSize as 2 | 3 | 4 | 6)
+      flippedCards.length === matchingCardsSize(gridSize as 2 | 3 | 4 | 6)
     ) {
+      document.addEventListener('cardClick', handleCardClicked);
       return;
     }
 
@@ -68,20 +86,24 @@ export default function Card_Box() {
   );
 
   return (
-    <div className="flex flex-col gap-5">
+    <div
+      className="flex flex-col gap-5"
+      style={{ backgroundImage: 'URL("../../assets/Background.png")' }}
+      ref={componentRef}
+    >
       {selectionBox()}
 
       <div className="text-center text-2xl text-green-500 font-bold">
         {' '}
-        Match {matchCardsSize(gridSize as 2 | 3 | 4 | 6)} cards, Moves: {movesCount}
+        Match {matchingCardsSize(gridSize as 2 | 3 | 4 | 6)} cards, Moves: {movesCount}
       </div>
       <div
-        className={`bg-white p-5 grid gap-4`}
+        className={`bg-white p-5 grid gap-4  bg-[url('assets/Background.png')]`}
         style={{
           gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
-          gridTemplateRows: `repeat(${gridSize}, 1fr)`
+          gridTemplateRows: `repeat(${gridSize}, 1fr)`,
+          backgroundImage: 'URL("assets/Background.png")'
         }}
-        onClick={(event) => handleCardClicked(event)}
       >
         {dec.map((row: number[], rowIndex: number) =>
           row.map((col: number, colIndex: number) => (
@@ -90,7 +112,7 @@ export default function Card_Box() {
               data-card
               data-row={rowIndex}
               data-col={colIndex}
-              show={
+              flip={
                 flippedCards.includes(`${rowIndex}-${colIndex}`) ||
                 matchedCards.includes(`${rowIndex}-${colIndex}`)
               }
@@ -104,6 +126,17 @@ export default function Card_Box() {
         className={`text-center text-2xl text-green-500 font-bold ${gameOver ? 'block' : 'hidden'}`}
       >
         YOU WON
+        <div>
+          <button
+            className="cursor-pointer text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+            ref={resetButtonRef}
+            type="button"
+            onClick={() => resetGame()}
+          >
+            {' '}
+            Reset Game
+          </button>
+        </div>
       </div>
     </div>
   );

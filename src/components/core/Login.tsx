@@ -39,7 +39,7 @@ export default function Login() {
 
       await testPromise;
     } catch (error) {
-      console.log('Error Accrued while login with error: ', error);
+      console.error('Error Accrued while login with error: ', error);
     } finally {
       dispatch(setLoadingAction(false));
     }

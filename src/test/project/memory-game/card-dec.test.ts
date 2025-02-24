@@ -29,7 +29,6 @@ describe('Card Dec', () => {
     expect(dec.length).toBe(size);
 
     const flatDec = dec.flat();
-    console.log(flatDec);
     [1, 2, 3, 4, 5, 6, 7, 8].forEach((number) =>
       expect(flatDec.filter((n) => n === number).length).toBe(partitionSize)
     );
